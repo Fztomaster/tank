@@ -6,15 +6,18 @@ import java.awt.Graphics;
 public class Tank {
 
 	private int x, y;
-	private Dir dir;
+	private Dir dir = Dir.DOWN;
 	private static final int SPEED = 5;
 	private boolean moving = false;
+	private TankFrame tf;
 	
-	public Tank(int x, int y, Dir dir) {
+	
+	public Tank(int x, int y, Dir dir, TankFrame tf) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.tf = tf;
 	}
 
 	public Dir getDir() {
@@ -39,6 +42,10 @@ public class Tank {
 		g.fillRect(x, y, 50, 50);
 		g.setColor(color);
 		move();
+	}
+	
+	public void fire() {
+		tf.bullet = new Bullet(this.x, this.y, this.dir);
 	}
 
 	private void move() {
