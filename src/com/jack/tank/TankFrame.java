@@ -11,6 +11,8 @@ public class TankFrame extends Frame {
 
 	Tank myTank = new Tank(200, 200, Dir.LEFT);
 	
+	Bullet bullet = new Bullet(300, 300, Dir.DOWN);
+	
 	public TankFrame() {
 		// 设置窗口可见
 		setVisible(true);
@@ -40,6 +42,7 @@ public class TankFrame extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		myTank.paint(g);
+		bullet.paint(g);
 	}
 
 	class MyKeyListener extends KeyAdapter {	
