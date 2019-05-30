@@ -10,6 +10,8 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame {
 
 	int x = 200; int y = 200;
+	Dir dir = Dir.LEFT;
+	private static final int SPEED = 10;
 	
 	public TankFrame() {
 		// 设置窗口可见
@@ -42,11 +44,26 @@ public class TankFrame extends Frame {
 	public void paint(Graphics g) {
 		System.out.println("paint...");
 		g.fillRect(x, y, 50, 50);
-		x += 10;
+		switch (dir) {
+			case LEFT:
+				x -= SPEED;
+				break;
+			case UP:
+				y -= SPEED;
+				break;
+			case RIGHT:
+				x += SPEED;
+				break;
+			case DOWN:
+				y += SPEED;
+				break;
+			default:
+				break;
+		}
 	}
 
-	class MyKeyListener extends KeyAdapter {
-
+	class MyKeyListener extends KeyAdapter {	
+		
 		boolean bL = false;
 		boolean bU = false;
 		boolean bR = false;
@@ -71,6 +88,8 @@ public class TankFrame extends Frame {
 				default:
 					break;
 			}
+			
+			setMainTankDir();
 		}
 
 		@Override
@@ -91,6 +110,19 @@ public class TankFrame extends Frame {
 					break;
 				default:
 					break;
+			}
+			setMainTankDir();
+		}
+
+		private void setMainTankDir() {
+			if (bL) {
+				dir = Dir.LEFT;
+			} else if (bU) {
+				dir = Dir.UP;
+			} else if (bR) {
+				dir = Dir.RIGHT;
+			} else if (bD) {
+				dir = Dir.DOWN;
 			}
 		}
 		
