@@ -2,6 +2,8 @@ package com.jack.tank;
 
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,7 +21,7 @@ public class TankFrame extends Frame {
 		// 设置窗体不可随意改变宽高
 		setResizable(false);
 		
-		// 监听窗口关闭事件
+		// 窗口监听事件
 		addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -28,6 +30,8 @@ public class TankFrame extends Frame {
 			}
 			
 		});
+		
+		this.addKeyListener(new MyKeyListener());
 		
 	}
 
@@ -40,6 +44,21 @@ public class TankFrame extends Frame {
 		g.fillRect(x, y, 50, 50);
 		x += 20;
 		y += 20;
+	}
+	
+	class MyKeyListener extends KeyAdapter {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			System.out.println("key pressed");
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			System.out.println("key released");
+		}
+		
+		
 	}
 
 }
