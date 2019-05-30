@@ -7,6 +7,8 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
 
+	int x = 200; int y = 200;
+	
 	public TankFrame() {
 		// 设置窗口可见
 		setVisible(true);
@@ -34,7 +36,10 @@ public class TankFrame extends Frame {
 	 */
 	@Override
 	public void paint(Graphics g) {
-		g.fillRect(200, 200, 50, 50);		
+		System.out.println("paint...");
+		g.fillRect(x, y, 50, 50);
+		x += 20;
+		y += 20;
 	}
 
 }
