@@ -71,10 +71,20 @@ public class TankFrame extends Frame {
 		
 		myTank.paint(g);
 		
+		/**
+		 * Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException
+		 * 增强的for循环循环过程中, 循环过程中不允许删除元素
+		 */
+//		for (Bullet b : bullets) {
+//			b.paint(g);
+//		}
+		
+		// 解决方案一
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);
 		}
 		
+		// 解决方案二
 //		for (Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
 //			Bullet b = it.next();
 //			if (!b.live) {
