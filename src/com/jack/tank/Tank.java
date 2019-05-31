@@ -2,6 +2,7 @@ package com.jack.tank;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Tank {
 
@@ -10,22 +11,24 @@ public class Tank {
 	// 坦克的方向
 	private Dir dir = Dir.DOWN;
 	// 坦克的移动速度
-	private static final int SPEED = 5;
+	private static final int SPEED = 1;
 	// 坦克是否移动标志
-	private boolean moving = false;
+	private boolean moving = true;
 	private TankFrame tf = null;
 	// 坦克的宽和高
 	public static int WIDTH = ResourceMgr.tankD.getWidth();
 	public static int HEIGHT = ResourceMgr.tankD.getHeight();	
 	
 	public boolean living = true;
+	private Group group = Group.BAD;
+	private Random random = new Random();
 	
-	
-	public Tank(int x, int y, Dir dir, TankFrame tf) {
+	public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.group = group;
 		this.tf = tf;
 	}
 
@@ -61,6 +64,14 @@ public class Tank {
 		this.moving = moving;
 	}
 
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
 	public void paint(Graphics g) {
 		if (!living) {
 			tf.tanks.remove(this);
@@ -86,7 +97,7 @@ public class Tank {
 	public void fire() {
 		int bX = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
 		int bY = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
-		tf.bullets.add(new Bullet(bX, bY, this.dir, this.tf));
+		tf.bullets.add(new Bullet(bX, bY, this.dir, this.group, this.tf));
 	}
 
 	private void move() {
@@ -109,6 +120,7 @@ public class Tank {
 				break;
 		}
 		
+		if (random.nextInt(10) > 8) this.fire();
 	}
 
 	public void die() {
