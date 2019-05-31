@@ -5,11 +5,18 @@ import java.awt.Graphics;
 
 public class Tank {
 
+	// 坦克的位置
 	private int x, y;
+	// 坦克的方向
 	private Dir dir = Dir.DOWN;
+	// 坦克的移动速度
 	private static final int SPEED = 5;
+	// 坦克是否移动标志
 	private boolean moving = false;
-	private TankFrame tf;
+	private TankFrame tf = null;
+	// 坦克的宽和高
+	public static int WIDTH = ResourceMgr.tankD.getWidth();
+	public static int HEIGHT = ResourceMgr.tankD.getHeight();	
 	
 	
 	public Tank(int x, int y, Dir dir, TankFrame tf) {
@@ -56,7 +63,9 @@ public class Tank {
 	}
 	
 	public void fire() {
-		tf.bullets.add(new Bullet(this.x, this.y, this.dir, this.tf));
+		int bX = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
+		int bY = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
+		tf.bullets.add(new Bullet(bX, bY, this.dir, this.tf));
 	}
 
 	private void move() {

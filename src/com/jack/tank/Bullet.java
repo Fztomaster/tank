@@ -12,7 +12,8 @@ public class Bullet {
 	// 子弹速度
 	private static final int SPEED = 10;
 	// 子弹高度和宽度
-	private static int WIDTH = 30, HEIGHT = 30;	
+	public static int WIDTH = ResourceMgr.bulletD.getWidth();
+	public static int HEIGHT = ResourceMgr.bulletD.getHeight();	
 	// 子弹临界范围判断
     boolean live = true;
 	private TankFrame tf = null;
