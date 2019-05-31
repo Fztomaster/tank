@@ -30,11 +30,21 @@ public class Bullet {
 		if (!live) {
 			tf.bullets.remove(this);
 		}
-		// 设置子弹的形状
-		Color color = g.getColor();
-		g.setColor(Color.RED);
-		g.fillOval(x, y, WIDTH, HEIGHT);
-		g.setColor(color);
+		
+		switch(dir) {
+			case LEFT:
+				g.drawImage(ResourceMgr.bulletL, x, y, null);
+				break;
+			case UP:
+				g.drawImage(ResourceMgr.bulletU, x, y, null);
+				break;
+			case RIGHT:
+				g.drawImage(ResourceMgr.bulletR, x, y, null);
+				break;
+			case DOWN:
+				g.drawImage(ResourceMgr.bulletD, x, y, null);
+				break;
+		}
 		move();
 	}
 
