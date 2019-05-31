@@ -14,8 +14,9 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-	Tank myTank = new Tank(200, 200, Dir.LEFT, this);
+	Tank myTank = new Tank(200, 400, Dir.LEFT, this);
 	List<Bullet> bullets = new ArrayList<>();	
+	List<Tank> tanks = new ArrayList<Tank>();
 	static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 	
 	public TankFrame() {
@@ -69,28 +70,16 @@ public class TankFrame extends Frame {
 		g.drawString("子弹的数量:" + bullets.size(), 10, 60);
 		g.setColor(color);
 		
-		myTank.paint(g);
+		myTank.paint(g);		
 		
-		/**
-		 * Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException
-		 * 增强的for循环循环过程中, 循环过程中不允许删除元素
-		 */
-//		for (Bullet b : bullets) {
-//			b.paint(g);
-//		}
-		
-		// 解决方案一
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);
 		}
 		
-		// 解决方案二
-//		for (Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
-//			Bullet b = it.next();
-//			if (!b.live) {
-//				it.remove();
-//			}
-//		}
+		for (int i = 0; i < tanks.size(); i++) {
+			tanks.get(i).paint(g);
+		}
+		
 	}
 
 	class MyKeyListener extends KeyAdapter {	
