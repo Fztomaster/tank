@@ -2,6 +2,7 @@ package com.jack.tank;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
 public class Tank {
@@ -22,6 +23,7 @@ public class Tank {
 	public boolean living = true;
 	private Group group = Group.BAD;
 	private Random random = new Random();
+	Rectangle rect = new Rectangle();
 	
 	public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
 		super();
@@ -30,6 +32,11 @@ public class Tank {
 		this.dir = dir;
 		this.group = group;
 		this.tf = tf;
+		
+		rect.x = this.x;
+		rect.y = this.y;
+		rect.width = WIDTH;
+		rect.height = HEIGHT;
 	}
 
 	public int getX() {
@@ -132,6 +139,10 @@ public class Tank {
 		}
 		
 		boundsCheck();
+		
+		// update rect
+		rect.x = this.x;
+		rect.y = this.y;
 	}
 	// boundary check
 	private void boundsCheck() {
