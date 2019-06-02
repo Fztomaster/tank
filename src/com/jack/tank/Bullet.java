@@ -10,7 +10,7 @@ public class Bullet {
 	// 子弹方向
 	private Dir dir;
 	// 子弹速度
-	private static final int SPEED = 10;
+	private static final int SPEED = 6;
 	// 子弹高度和宽度
 	public static int WIDTH = ResourceMgr.bulletD.getWidth();
 	public static int HEIGHT = ResourceMgr.bulletD.getHeight();	
