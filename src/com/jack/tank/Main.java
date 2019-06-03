@@ -5,8 +5,9 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException {
 		TankFrame tf = new TankFrame();
 		
+		int tankCount = Integer.parseInt((String) PropertyMgr.get("tankInitCount"));
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < tankCount; i++) {
 			tf.tanks.add(new Tank(50 + i * 80, 200, Dir.DOWN, Group.BAD, tf));
 		}
 		
